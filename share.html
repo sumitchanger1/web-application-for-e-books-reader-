@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Share Your Thought - ThoughtShare</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-100 via-indigo-100 to-pink-100 font-sans">
+
+  
+  <!-- Header -->
+<header class="bg-white shadow sticky top-0 z-10 border-b border-gray-200">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-extrabold text-indigo-600">ThoughtShare</h1>
+    <nav class="space-x-6">
+      <a href="qutoe.html" class="text-gray-600 font-medium hover:text-indigo-600 transition">Home</a>
+      <a href="love.html" class="text-gray-600 font-medium hover:text-indigo-600 transition">Quotes</a>
+      <a href="profile.html" class="text-gray-600 font-medium hover:text-indigo-600 transition">Profile</a>
+    </nav>
+  </div>
+</header>
+
+
+
+
+  <!-- Share Form Section -->
+  <section class="container mx-auto py-16 px-4 text-center">
+    <div class="mb-8">
+      <h2 class="text-4xl font-extrabold text-indigo-600 animate-fade-in-down">Share Your Thought</h2>
+      <p class="text-lg text-gray-600 mt-2">Connect with others by sharing your experiences, quotes, or daily thoughts.</p>
+    </div>
+
+    <form id="quoteForm" class="bg-white p-6 rounded-xl shadow-md max-w-xl mx-auto space-y-4 animate-fade-in-up">
+        <input id="name" type="text" placeholder="Your Name" class="w-full border border-gray-300 p-3 rounded" required>
+        
+        <select id="category" class="w-full border border-gray-300 p-3 rounded" required>
+          <option value="">-- Select a Category --</option>
+          <option value="love">❤️ Love</option>
+          <option value="sad">💔 Sad</option>
+          <option value="hope">✨ Hope</option>
+          <option value="shayari">🖋️ Shayari</option>
+          <option value="poetry">📜 Poetry</option>
+          <option value="writers">✍️ Writers</option>
+          <option value="books">📚 Book Quotes</option>
+        </select>
+        
+        <textarea id="quote" placeholder="Write your quote or experience..." rows="5" class="w-full border border-gray-300 p-3 rounded" required></textarea>
+        
+        <button type="submit" class="bg-indigo-600 text-white py-2 px-6 rounded hover:bg-indigo-500 transition">Share Now</button>
+      </form>
+      
+
+    <div class="mt-12">
+      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_z01bika0.json" background="transparent" speed="1" style="width: 300px; height: 300px; margin: auto;" loop autoplay></lottie-player>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center text-sm text-gray-500 py-6 border-t">
+    &copy; 2025 ThoughtShare. All rights reserved.
+  </footer>
+
+  <!-- Animations -->
+  <style>
+    @keyframes fade-in-down {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-in-up {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-down {
+      animation: fade-in-down 1s ease-out;
+    }
+    .animate-fade-in-up {
+      animation: fade-in-up 1s ease-out;
+    }
+  </style>
+<script>
+    const form = document.getElementById('quoteForm');
+  
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const name = document.getElementById('name').value;
+      const category = document.getElementById('category').value;
+      const quote = document.getElementById('quote').value;
+  
+      const newQuote = {
+        name,
+        category,
+        quote,
+        timestamp: new Date().toISOString()
+      };
+  
+      const existingQuotes = JSON.parse(localStorage.getItem('quotes')) || [];
+      existingQuotes.unshift(newQuote); // Add to top
+      localStorage.setItem('quotes', JSON.stringify(existingQuotes));
+  
+      alert('Your quote has been shared successfully!');
+      form.reset();
+    });
+  </script>
+  
+  
+</body>
+</html>
